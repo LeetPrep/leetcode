@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Two Sum - LeetPrep | LeetCode Solution</title>
+    <meta name="description" content="Detailed solution for LeetCode Two Sum problem with explanations in Python, Java, and C++. Watch LeetPrep's video tutorial and read step-by-step solution.">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="images/favicon_io/favicon.ico">
+    <link rel="icon" type="image/png" sizes="32x32" href="images/favicon_io/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="images/favicon_io/favicon-16x16.png">
+    
+    <link rel="stylesheet" href="styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <div class="nav-brand">
+                <img src="images/logo.png" alt="LeetPrep Logo" class="logo">
+                <h1><a href="index.html" style="text-decoration: none; color: inherit;">Leet<span class="accent">Prep</span></a></h1>
+            </div>
+            <nav class="nav">
+                <a href="index.html#home" class="nav-link">Home</a>
+                <a href="index.html#problems" class="nav-link">Problems</a>
+                <a href="index.html#about" class="nav-link">About</a>
+                <a href="https://www.youtube.com/@leet_prep" class="nav-link youtube-link" target="_blank" rel="noopener">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/>
+                    </svg>
+                    YouTube
+                </a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Problem Detail -->
+    <main class="problem-detail">
+        <div class="container">
+            <div class="problem-detail-header">
+                <div class="problem-detail-title">
+                    <h1>1. Two Sum</h1>
+                    <span class="difficulty easy">Easy</span>
+                </div>
+                <div class="problem-meta">
+                    <div class="meta-item">
+                        <span>🎥</span>
+                        <a href="https://youtube.com/watch?v=example1" target="_blank" rel="noopener">Watch Video Solution</a>
+                    </div>
+                    <div class="meta-item">
+                        <span>💻</span>
+                        <span>Languages: Python, Java, C++</span>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Ad Space -->
+            <div class="ad-container" style="margin: 2rem 0;">
+                <div class="ad-placeholder">
+                    <div class="ad-label">Advertisement</div>
+                </div>
+            </div>
+            
+            <div class="problem-statement">
+                <h2>Problem Statement</h2>
+                <p>Given an array of integers <code>nums</code> and an integer <code>target</code>, return indices of the two numbers such that they add up to <code>target</code>.</p>
+                <p>You may assume that each input would have <strong>exactly one solution</strong>, and you may not use the same element twice.</p>
+                <p>You can return the answer in any order.</p>
+                
+                <div class="problem-examples">
+                    <div class="example">
+                        <h4>Example 1:</h4>
+                        <pre><strong>Input:</strong> nums = [2,7,11,15], target = 9
+<strong>Output:</strong> [0,1]
+<strong>Explanation:</strong> Because nums[0] + nums[1] == 9, we return [0, 1].</pre>
+                    </div>
+                    
+                    <div class="example">
+                        <h4>Example 2:</h4>
+                        <pre><strong>Input:</strong> nums = [3,2,4], target = 6
+<strong>Output:</strong> [1,2]
+<strong>Explanation:</strong> Because nums[1] + nums[2] == 6, we return [1, 2].</pre>
+                    </div>
+                    
+                    <div class="example">
+                        <h4>Example 3:</h4>
+                        <pre><strong>Input:</strong> nums = [3,3], target = 6
+<strong>Output:</strong> [0,1]</pre>
+                    </div>
+                </div>
+                
+                <div style="margin-top: 2rem;">
+                    <h3>Constraints:</h3>
+                    <ul style="color: var(--text-secondary); margin-left: 2rem;">
+                        <li>2 ≤ nums.length ≤ 10⁴</li>
+                        <li>-10⁹ ≤ nums[i] ≤ 10⁹</li>
+                        <li>-10⁹ ≤ target ≤ 10⁹</li>
+                        <li><strong>Only one valid answer exists.</strong></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <!-- Ad Space -->
+            <div class="ad-container" style="margin: 2rem 0;">
+                <div class="ad-placeholder">
+                    <div class="ad-label">Advertisement</div>
+                </div>
+            </div>
+            
+            <div class="solutions-section">
+                <h2>Solutions & Explanations</h2>
+                
+                <!-- Approach Explanation -->
+                <div class="approach-explanation" style="background: var(--bg-secondary); border: 1px solid var(--border-color); border-radius: var(--border-radius-lg); padding: 2rem; margin-bottom: 2rem;">
+                    <h3 style="color: var(--text-accent); margin-bottom: 1rem;">💡 Approach: Hash Map (Optimal Solution)</h3>
+                    <p style="color: var(--text-secondary); line-height: 1.8; margin-bottom: 1rem;">
+                        The key insight is to use a hash map to store the <strong>complement</strong> of each number as we iterate through the array. 
+                        For each number, we calculate what value we need to reach our target (complement = target - current_number), 
+                        and check if that complement already exists in our hash map.
+                    </p>
+                    <p style="color: var(--text-secondary); line-height: 1.8;">
+                        This approach reduces the time complexity from O(n²) (brute force) to O(n) by trading space for time.
+                    </p>
+                </div>
+                
+                <div class="solution-tabs">
+                    <button class="tab-button active" data-language="python">Python</button>
+                    <button class="tab-button" data-language="java">Java</button>
+                    <button class="tab-button" data-language="cpp">C++</button>
+                </div>
+                
+                <!-- Python Solution -->
+                <div class="tab-content active" data-language="python">
+                    <div class="solution-code">
+                        <div class="code-header">
+                            <h3>Python Solution</h3>
+                            <button class="copy-button" onclick="copyCode(this)">Copy</button>
+                        </div>
+                        <div class="code-block">
+                            <pre><span class="keyword">class</span> <span class="function">Solution</span>:
+    <span class="keyword">def</span> <span class="function">twoSum</span>(<span class="variable">self</span>, <span class="variable">nums</span>: List[<span class="keyword">int</span>], <span class="variable">target</span>: <span class="keyword">int</span>) -> List[<span class="keyword">int</span>]:
+        <span class="comment">"""
+        Approach: Hash Map for O(n) solution
+        
+        We use a hash map to store the complement of each number
+        as we iterate through the array. If we find a number whose
+        complement exists in the hash map, we've found our answer.
+        """</span>
+        <span class="comment"># Dictionary to store number and its index</span>
+        <span class="variable">num_map</span> = {}
+        
+        <span class="keyword">for</span> <span class="variable">i</span>, <span class="variable">num</span> <span class="keyword">in</span> <span class="function">enumerate</span>(<span class="variable">nums</span>):
+            <span class="comment"># Calculate the complement</span>
+            <span class="variable">complement</span> = <span class="variable">target</span> - <span class="variable">num</span>
+            
+            <span class="comment"># Check if complement exists in our map</span>
+            <span class="keyword">if</span> <span class="variable">complement</span> <span class="keyword">in</span> <span class="variable">num_map</span>:
+                <span class="keyword">return</span> [<span class="variable">num_map</span>[<span class="variable">complement</span>], <span class="variable">i</span>]
+            
+            <span class="comment"># Store current number and its index</span>
+            <span class="variable">num_map</span>[<span class="variable">num</span>] = <span class="variable">i</span>
+        
+        <span class="comment"># Return empty list if no solution found</span>
+        <span class="keyword">return</span> []</pre>
+                        </div>
+                    </div>
+                    
+                    <div class="complexity-analysis">
+                        <h3>Complexity Analysis</h3>
+                        <div class="complexity-item">
+                            <span>Time Complexity:</span>
+                            <span>O(n)</span>
+                        </div>
+                        <div class="complexity-item">
+                            <span>Space Complexity:</span>
+                            <span>O(n)</span>
+                        </div>
+                        <div style="margin-top: 1rem; color: var(--text-secondary); font-size: 0.875rem;">
+                            <p><strong>Time:</strong> We traverse the list once, and hash map operations take O(1) average time.</p>
+                            <p><strong>Space:</strong> In the worst case, we store all n elements in the hash map.</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Java Solution -->
+                <div class="tab-content" data-language="java">
+                    <div class="solution-code">
+                        <div class="code-header">
+                            <h3>Java Solution</h3>
+                            <button class="copy-button" onclick="copyCode(this)">Copy</button>
+                        </div>
+                        <div class="code-block">
+                            <pre><span class="keyword">class</span> <span class="function">Solution</span> {
+    <span class="keyword">public</span> <span class="keyword">int</span>[] <span class="function">twoSum</span>(<span class="keyword">int</span>[] <span class="variable">nums</span>, <span class="keyword">int</span> <span class="variable">target</span>) {
+        <span class="comment">/*
+         * Approach: Hash Map for O(n) solution
+         * 
+         * We use a HashMap to store the complement of each number
+         * as we iterate through the array. If we find a number whose
+         * complement exists in the HashMap, we've found our answer.
+         */</span>
+        
+        <span class="comment">// HashMap to store number and its index</span>
+        <span class="function">Map</span>&lt;<span class="function">Integer</span>, <span class="function">Integer</span>&gt; <span class="variable">numMap</span> = <span class="keyword">new</span> <span class="function">HashMap</span>&lt;&gt;();
+        
+        <span class="keyword">for</span> (<span class="keyword">int</span> <span class="variable">i</span> = <span class="number">0</span>; <span class="variable">i</span> &lt; <span class="variable">nums</span>.<span class="variable">length</span>; <span class="variable">i</span>++) {
+            <span class="comment">// Calculate the complement</span>
+            <span class="keyword">int</span> <span class="variable">complement</span> = <span class="variable">target</span> - <span class="variable">nums</span>[<span class="variable">i</span>];
+            
+            <span class="comment">// Check if complement exists in our map</span>
+            <span class="keyword">if</span> (<span class="variable">numMap</span>.<span class="function">containsKey</span>(<span class="variable">complement</span>)) {
+                <span class="keyword">return</span> <span class="keyword">new</span> <span class="keyword">int</span>[]{<span class="variable">numMap</span>.<span class="function">get</span>(<span class="variable">complement</span>), <span class="variable">i</span>};
+            }
+            
+            <span class="comment">// Store current number and its index</span>
+            <span class="variable">numMap</span>.<span class="function">put</span>(<span class="variable">nums</span>[<span class="variable">i</span>], <span class="variable">i</span>);
+        }
+        
+        <span class="comment">// Return empty array if no solution found</span>
+        <span class="keyword">return</span> <span class="keyword">new</span> <span class="keyword">int</span>[]{};
+    }
+}</pre>
+                        </div>
+                    </div>
+                    
+                    <div class="complexity-analysis">
+                        <h3>Complexity Analysis</h3>
+                        <div class="complexity-item">
+                            <span>Time Complexity:</span>
+                            <span>O(n)</span>
+                        </div>
+                        <div class="complexity-item">
+                            <span>Space Complexity:</span>
+                            <span>O(n)</span>
+                        </div>
+                        <div style="margin-top: 1rem; color: var(--text-secondary); font-size: 0.875rem;">
+                            <p><strong>Time:</strong> Single pass through the array with O(1) HashMap operations.</p>
+                            <p><strong>Space:</strong> HashMap can store up to n key-value pairs in worst case.</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- C++ Solution -->
+                <div class="tab-content" data-language="cpp">
+                    <div class="solution-code">
+                        <div class="code-header">
+                            <h3>C++ Solution</h3>
+                            <button class="copy-button" onclick="copyCode(this)">Copy</button>
+                        </div>
+                        <div class="code-block">
+                            <pre><span class="keyword">class</span> <span class="function">Solution</span> {
+<span class="keyword">public</span>:
+    <span class="function">vector</span>&lt;<span class="keyword">int</span>&gt; <span class="function">twoSum</span>(<span class="function">vector</span>&lt;<span class="keyword">int</span>&gt;&amp; <span class="variable">nums</span>, <span class="keyword">int</span> <span class="variable">target</span>) {
+        <span class="comment">/*
+         * Approach: Hash Map for O(n) solution
+         * 
+         * We use an unordered_map to store the complement of each number
+         * as we iterate through the array. If we find a number whose
+         * complement exists in the map, we've found our answer.
+         */</span>
+        
+        <span class="comment">// Unordered map to store number and its index</span>
+        <span class="function">unordered_map</span>&lt;<span class="keyword">int</span>, <span class="keyword">int</span>&gt; <span class="variable">numMap</span>;
+        
+        <span class="keyword">for</span> (<span class="keyword">int</span> <span class="variable">i</span> = <span class="number">0</span>; <span class="variable">i</span> &lt; <span class="variable">nums</span>.<span class="function">size</span>(); <span class="variable">i</span>++) {
+            <span class="comment">// Calculate the complement</span>
+            <span class="keyword">int</span> <span class="variable">complement</span> = <span class="variable">target</span> - <span class="variable">nums</span>[<span class="variable">i</span>];
+            
+            <span class="comment">// Check if complement exists in our map</span>
+            <span class="keyword">if</span> (<span class="variable">numMap</span>.<span class="function">find</span>(<span class="variable">complement</span>) != <span class="variable">numMap</span>.<span class="function">end</span>()) {
+                <span class="keyword">return</span> {<span class="variable">numMap</span>[<span class="variable">complement</span>], <span class="variable">i</span>};
+            }
+            
+            <span class="comment">// Store current number and its index</span>
+            <span class="variable">numMap</span>[<span class="variable">nums</span>[<span class="variable">i</span>]] = <span class="variable">i</span>;
+        }
+        
+        <span class="comment">// Return empty vector if no solution found</span>
+        <span class="keyword">return</span> {};
+    }
+};</pre>
+                        </div>
+                    </div>
+                    
+                    <div class="complexity-analysis">
+                        <h3>Complexity Analysis</h3>
+                        <div class="complexity-item">
+                            <span>Time Complexity:</span>
+                            <span>O(n)</span>
+                        </div>
+                        <div class="complexity-item">
+                            <span>Space Complexity:</span>
+                            <span>O(n)</span>
+                        </div>
+                        <div style="margin-top: 1rem; color: var(--text-secondary); font-size: 0.875rem;">
+                            <p><strong>Time:</strong> One pass through the vector with average O(1) unordered_map operations.</p>
+                            <p><strong>Space:</strong> unordered_map stores at most n key-value pairs.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Key Insights Section -->
+            <div style="background: var(--bg-secondary); border: 1px solid var(--border-color); border-radius: var(--border-radius-lg); padding: 2rem; margin: 2rem 0;">
+                <h3 style="color: var(--text-accent); margin-bottom: 1rem;">🔑 Key Insights</h3>
+                <ul style="color: var(--text-secondary); line-height: 1.8; margin-left: 2rem;">
+                    <li><strong>Trade space for time:</strong> We use extra space (hash map) to achieve linear time complexity.</li>
+                    <li><strong>Single pass:</strong> We solve the problem in just one iteration through the array.</li>
+                    <li><strong>Complement thinking:</strong> Instead of looking for pairs, we look for complements.</li>
+                    <li><strong>Early termination:</strong> We return as soon as we find the first valid pair.</li>
+                </ul>
+            </div>
+            
+            <!-- Navigation -->
+            <div style="text-align: center; margin-top: 3rem; display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;">
+                <a href="index.html" class="btn btn-secondary">← Back to Problems</a>
+                <a href="?problem=2" class="btn btn-outline">Next Problem →</a>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-brand">
+                    <img src="images/logo.png" alt="LeetPrep Logo" class="footer-logo">
+                    <h3>Leet<span class="accent">Prep</span></h3>
+                    <p>Mastering algorithms one problem at a time</p>
+                </div>
+                <div class="footer-links">
+                    <h4>Quick Links</h4>
+                    <a href="index.html#home">Home</a>
+                    <a href="index.html#problems">Problems</a>
+                    <a href="index.html#about">About</a>
+                </div>
+                <div class="footer-social">
+                    <h4>Follow LeetPrep</h4>
+                    <a href="https://www.youtube.com/@leet_prep" class="social-link" target="_blank" rel="noopener">YouTube</a>
+                    <a href="https://github.com/LeetPrep" class="social-link" target="_blank" rel="noopener">GitHub</a>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 LeetPrep. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Tab functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            const tabButtons = document.querySelectorAll('.tab-button');
+            const tabContents = document.querySelectorAll('.tab-content');
+            
+            tabButtons.forEach(button => {
+                button.addEventListener('click', () => {
+                    const language = button.dataset.language;
+                    
+                    // Update active tab
+                    tabButtons.forEach(btn => btn.classList.remove('active'));
+                    button.classList.add('active');
+                    
+                    // Update active content
+                    tabContents.forEach(content => {
+                        content.classList.remove('active');
+                        if (content.dataset.language === language) {
+                            content.classList.add('active');
+                        }
+                    });
+                });
+            });
+        });
+        
+        // Copy code functionality
+        function copyCode(button) {
+            const codeBlock = button.closest('.solution-code').querySelector('pre');
+            const text = codeBlock.textContent;
+            
+            navigator.clipboard.writeText(text).then(() => {
+                button.textContent = 'Copied!';
+                setTimeout(() => {
+                    button.textContent = 'Copy';
+                }, 2000);
+            });
+        }
+    </script>
+</body>
+</html>

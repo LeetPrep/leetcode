@@ -1,0 +1,59 @@
+{
+  "id": 1,
+  "title": "Problem Title Here",
+  "slug": "problem-slug-here",
+  "difficulty": "Easy",
+  "tags": ["Array", "Hash Table"],
+  "publishDate": "2025-07-05",
+  "videoUrl": "https://youtube.com/watch?v=your-video-id",
+  "leetcodeUrl": "https://leetcode.com/problems/your-problem/",
+  "languages": ["Python", "Java", "C++"],
+  "description": "Brief description of what the problem asks you to do.",
+  "approach": {
+    "title": "Your Solution Approach Name",
+    "description": "Explain the main approach/algorithm used to solve this problem.",
+    "timeComplexity": "O(n)",
+    "spaceComplexity": "O(1)"
+  },
+  "content": {
+    "problemStatement": "Full problem statement with <code>code formatting</code> and <strong>bold text</strong> where needed. Use HTML tags for formatting.\n\nYou can add multiple paragraphs and lists as needed.",
+    "examples": [
+      {
+        "title": "Example 1:",
+        "input": "input = [1,2,3]",
+        "output": "6",
+        "explanation": "Explain why this input produces this output."
+      },
+      {
+        "title": "Example 2:",
+        "input": "input = [4,5,6]", 
+        "output": "15",
+        "explanation": "Another example with explanation."
+      }
+    ],
+    "constraints": [
+      "<code>1 ≤ input.length ≤ 10<sup>4</sup></code>",
+      "<code>-10<sup>9</sup> ≤ input[i] ≤ 10<sup>9</sup></code>",
+      "Add any other constraints here"
+    ],
+    "keyInsights": [
+      "<strong>Key insight 1:</strong> Explain an important concept or technique used.",
+      "<strong>Key insight 2:</strong> Another important observation or pattern.",
+      "<strong>Key insight 3:</strong> Additional insights that help understand the solution."
+    ]
+  },
+  "solutions": {
+    "python": {
+      "code": "class Solution:\n    def yourMethod(self, input: List[int]) -> int:\n        \"\"\"\n        Your solution approach explanation\n        \"\"\"\n        # Your Python code here\n        result = 0\n        for num in input:\n            result += num\n        return result",
+      "explanation": "Explain how the Python solution works step by step."
+    },
+    "java": {
+      "code": "class Solution {\n    public int yourMethod(int[] input) {\n        /*\n         * Your solution approach explanation\n         */\n        \n        // Your Java code here\n        int result = 0;\n        for (int num : input) {\n            result += num;\n        }\n        return result;\n    }\n}",
+      "explanation": "Explain how the Java solution works step by step."
+    },
+    "cpp": {
+      "code": "class Solution {\npublic:\n    int yourMethod(vector<int>& input) {\n        /*\n         * Your solution approach explanation\n         */\n        \n        // Your C++ code here\n        int result = 0;\n        for (int num : input) {\n            result += num;\n        }\n        return result;\n    }\n};",
+      "explanation": "Explain how the C++ solution works step by step."
+    }
+  }
+}

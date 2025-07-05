@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title id="page-title">Problem - LeetPrep | LeetCode Solution</title>
+    <meta id="page-description" name="description" content="LeetCode problem solution with detailed explanations.">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="images/favicon_io/favicon.ico">
+    <link rel="icon" type="image/png" sizes="32x32" href="images/favicon_io/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="images/favicon_io/favicon-16x16.png">
+    
+    <link rel="stylesheet" href="styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+    
+    <!-- AdSense placeholder - Will be populated dynamically -->
+    <script id="adsense-script"></script>
+    
+    <style>
+        .dynamic-content {
+            max-width: none;
+        }
+        
+        .content-text {
+            margin: 1.5rem 0;
+            line-height: 1.8;
+        }
+        
+        .content-heading {
+            margin: 2rem 0 1rem 0;
+            color: var(--text-accent);
+        }
+        
+        .content-list {
+            margin: 1rem 0;
+            padding-left: 2rem;
+        }
+        
+        .content-list li {
+            margin: 0.5rem 0;
+            line-height: 1.6;
+        }
+        
+        .content-blockquote {
+            background: var(--bg-secondary);
+            border-left: 4px solid var(--text-accent);
+            padding: 1rem 1.5rem;
+            margin: 1.5rem 0;
+            border-radius: 0 var(--border-radius) var(--border-radius) 0;
+        }
+        
+        .content-image {
+            margin: 2rem 0;
+            text-align: center;
+        }
+        
+        .content-image img {
+            border-radius: var(--border-radius);
+            border: 1px solid var(--border-color);
+        }
+        
+        .content-image.small img { max-width: 300px; }
+        .content-image.medium img { max-width: 600px; }
+        .content-image.large img { max-width: 100%; }
+        
+        .content-image figcaption {
+            margin-top: 0.5rem;
+            color: var(--text-secondary);
+            font-size: 0.875rem;
+            font-style: italic;
+        }
+        
+        .dynamic-ad {
+            margin: 2rem 0;
+            text-align: center;
+        }
+        
+        .problem-not-found {
+            text-align: center;
+            padding: 4rem 2rem;
+            color: var(--text-secondary);
+        }
+        
+        .problem-not-found h1 {
+            color: var(--text-primary);
+            margin-bottom: 1rem;
+        }
+        
+        .loading {
+            text-align: center;
+            padding: 4rem 2rem;
+            color: var(--text-secondary);
+        }
+        
+        .loading .spinner {
+            border: 3px solid var(--border-color);
+            border-top: 3px solid var(--text-accent);
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            animation: spin 1s linear infinite;
+            margin: 0 auto 1rem auto;
+        }
+        
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <div class="nav-brand">
+                <img src="images/logo.png" alt="LeetPrep Logo" class="logo">
+                <h1><a href="index.html" style="text-decoration: none; color: inherit;">Leet<span class="accent">Prep</span></a></h1>
+            </div>
+            <nav class="nav">
+                <a href="index.html#home" class="nav-link">Home</a>
+                <a href="index.html#problems" class="nav-link">Problems</a>
+                <a href="index.html#about" class="nav-link">About</a>
+                <a href="https://www.youtube.com/@leet_prep" class="nav-link youtube-link" target="_blank" rel="noopener">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/>
+                    </svg>
+                    YouTube
+                </a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Loading State -->
+    <div id="loading" class="loading">
+        <div class="spinner"></div>
+        <p>Loading problem...</p>
+    </div>
+
+    <!-- Problem Not Found -->
+    <div id="not-found" class="problem-not-found" style="display: none;">
+        <h1>Problem Not Found</h1>
+        <p>The requested problem could not be found.</p>
+        <a href="index.html" class="btn btn-primary">← Back to Home</a>
+    </div>
+
+    <!-- Problem Content -->
+    <main id="problem-content" class="problem-detail" style="display: none;">
+        <div class="container">
+            <!-- Problem header will be inserted here -->
+            <div id="problem-header"></div>
+            
+            <!-- Dynamic content will be inserted here -->
+            <div id="dynamic-content" class="dynamic-content"></div>
+            
+            <!-- Navigation -->
+            <div style="text-align: center; margin-top: 3rem; display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;">
+                <a href="index.html" class="btn btn-secondary">← Back to Problems</a>
+                <button id="prev-problem" class="btn btn-outline" style="display: none;">← Previous Problem</button>
+                <button id="next-problem" class="btn btn-outline" style="display: none;">Next Problem →</button>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-brand">
+                    <img src="images/logo.png" alt="LeetPrep Logo" class="footer-logo">
+                    <h3>Leet<span class="accent">Prep</span></h3>
+                    <p>Mastering algorithms one problem at a time</p>
+                </div>
+                <div class="footer-links">
+                    <h4>Quick Links</h4>
+                    <a href="index.html#home">Home</a>
+                    <a href="index.html#problems">Problems</a>
+                    <a href="index.html#about">About</a>
+                </div>
+                <div class="footer-social">
+                    <h4>Follow LeetPrep</h4>
+                    <a href="https://www.youtube.com/@leet_prep" class="social-link" target="_blank" rel="noopener">YouTube</a>
+                    <a href="https://github.com/LeetPrep" class="social-link" target="_blank" rel="noopener">GitHub</a>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 LeetPrep. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="problem-loader.js"></script>
+</body>
+</html>

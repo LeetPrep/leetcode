@@ -1,0 +1,458 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Panel - LeetPrep</title>
+    <meta name="description" content="Admin panel for managing LeetPrep problems and content.">
+    <meta name="robots" content="noindex, nofollow">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="images/favicon_io/favicon.ico">
+    <link rel="icon" type="image/png" sizes="32x32" href="images/favicon_io/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="images/favicon_io/favicon-16x16.png">
+    
+    <link rel="stylesheet" href="styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+    
+    <style>
+        .login-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.9);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 10000;
+        }
+        
+        .login-container {
+            background: var(--bg-secondary);
+            border: 1px solid var(--border-color);
+            border-radius: var(--border-radius-lg);
+            padding: 3rem;
+            max-width: 400px;
+            width: 90%;
+            text-align: center;
+        }
+        
+        .login-title {
+            color: var(--text-primary);
+            margin-bottom: 0.5rem;
+            font-size: 1.5rem;
+        }
+        
+        .login-subtitle {
+            color: var(--text-secondary);
+            margin-bottom: 2rem;
+            font-size: 0.875rem;
+        }
+        
+        .login-form {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+        
+        .login-input {
+            padding: 1rem;
+            border: 1px solid var(--border-color);
+            border-radius: var(--border-radius);
+            background: var(--bg-tertiary);
+            color: var(--text-primary);
+            font-size: 1rem;
+            font-family: inherit;
+        }
+        
+        .login-input:focus {
+            outline: none;
+            border-color: var(--text-accent);
+        }
+        
+        .login-button {
+            background: var(--text-accent);
+            color: var(--bg-primary);
+            border: none;
+            padding: 1rem;
+            border-radius: var(--border-radius);
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+        
+        .login-button:hover {
+            opacity: 0.9;
+        }
+        
+        .login-button:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+        
+        .login-error {
+            color: #dc3545;
+            font-size: 0.875rem;
+            margin-top: 0.5rem;
+            display: none;
+        }
+        
+        .admin-content {
+            display: none;
+        }
+        
+        .admin-content.authenticated {
+            display: block;
+        }
+        
+        @keyframes shake {
+            0%, 100% { transform: translateX(0); }
+            10%, 30%, 50%, 70%, 90% { transform: translateX(-5px); }
+            20%, 40%, 60%, 80% { transform: translateX(5px); }
+        }
+        
+        .login-form.shake {
+            animation: shake 0.5s;
+        }
+        .admin-container {
+            max-width: 1200px;
+            margin: 2rem auto;
+            padding: 0 1rem;
+        }
+        
+        .admin-header {
+            background: var(--bg-secondary);
+            padding: 2rem;
+            border-radius: var(--border-radius-lg);
+            margin-bottom: 2rem;
+            text-align: center;
+        }
+        
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+            color: var(--text-primary);
+        }
+        
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 0.75rem;
+            border: 1px solid var(--border-color);
+            border-radius: var(--border-radius);
+            background: var(--bg-tertiary);
+            color: var(--text-primary);
+            font-family: inherit;
+        }
+        
+        .form-group textarea {
+            min-height: 100px;
+            font-family: 'JetBrains Mono', monospace;
+        }
+        
+        .content-builder {
+            background: var(--bg-secondary);
+            border: 1px solid var(--border-color);
+            border-radius: var(--border-radius-lg);
+            padding: 2rem;
+            margin-bottom: 2rem;
+        }
+        
+        .content-element {
+            background: var(--bg-tertiary);
+            border: 1px solid var(--border-color);
+            border-radius: var(--border-radius);
+            padding: 1rem;
+            margin-bottom: 1rem;
+            position: relative;
+        }
+        
+        .element-controls {
+            position: absolute;
+            top: 0.5rem;
+            right: 0.5rem;
+            display: flex;
+            gap: 0.5rem;
+        }
+        
+        .btn-small {
+            padding: 0.25rem 0.5rem;
+            font-size: 0.75rem;
+            border: none;
+            border-radius: var(--border-radius-sm);
+            cursor: pointer;
+            transition: var(--transition);
+        }
+        
+        .btn-danger {
+            background: #dc3545;
+            color: white;
+        }
+        
+        .btn-move {
+            background: var(--text-accent);
+            color: var(--bg-primary);
+        }
+        
+        .problems-list {
+            display: grid;
+            gap: 1rem;
+            margin-top: 2rem;
+        }
+        
+        .problem-item {
+            background: var(--bg-secondary);
+            border: 1px solid var(--border-color);
+            border-radius: var(--border-radius);
+            padding: 1rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .problem-info h4 {
+            margin: 0 0 0.5rem 0;
+            color: var(--text-primary);
+        }
+        
+        .problem-info p {
+            margin: 0;
+            color: var(--text-secondary);
+            font-size: 0.875rem;
+        }
+        
+        .problem-actions {
+            display: flex;
+            gap: 0.5rem;
+        }
+    </style>
+</head>
+<body>
+    <!-- Login Overlay -->
+    <div id="login-overlay" class="login-overlay">
+        <div class="login-container">
+            <h2 class="login-title">🔐 Admin Access</h2>
+            <p class="login-subtitle">Enter password to access the admin panel</p>
+            
+            <form id="login-form" class="login-form">
+                <input 
+                    type="password" 
+                    id="admin-password" 
+                    class="login-input"
+                    placeholder="Enter admin password"
+                    autocomplete="current-password"
+                    required
+                >
+                <button type="submit" id="login-button" class="login-button">
+                    Access Admin Panel
+                </button>
+                <div id="login-error" class="login-error">
+                    Incorrect password. Please try again.
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Admin Content (Hidden until authenticated) -->
+    <div id="admin-content" class="admin-content">
+        <!-- Header -->
+        <header class="header">
+            <div class="container">
+                <div class="nav-brand">
+                    <img src="images/logo.png" alt="LeetPrep Logo" class="logo">
+                    <h1><a href="index.html" style="text-decoration: none; color: inherit;">Leet<span class="accent">Prep</span></a></h1>
+                </div>
+                <nav class="nav">
+                    <a href="index.html" class="nav-link">Home</a>
+                    <a href="#" class="nav-link active">Admin</a>
+                    <button id="logout-button" class="btn btn-outline" style="margin-left: auto;">Logout</button>
+                    <a href="https://www.youtube.com/@leet_prep" class="nav-link youtube-link" target="_blank" rel="noopener">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/>
+                        </svg>
+                        YouTube
+                    </a>
+                </nav>
+            </div>
+        </header>
+
+    <div class="admin-container">
+        <div class="admin-header">
+            <h1>LeetPrep Admin Panel</h1>
+            <p>Manage problems, content, and website structure</p>
+        </div>
+
+        <!-- Tab Navigation -->
+        <div class="tab-navigation" style="margin-bottom: 2rem;">
+            <button class="btn btn-outline active" onclick="showTab('create-problem')">Create Problem</button>
+            <button class="btn btn-outline" onclick="showTab('manage-problems')">Manage Problems</button>
+            <button class="btn btn-outline" onclick="showTab('site-settings')">Site Settings</button>
+        </div>
+
+        <!-- Create Problem Tab -->
+        <div id="create-problem" class="admin-tab">
+            <div class="content-builder">
+                <h2>Create New Problem</h2>
+                <form id="problem-form">
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
+                        <div class="form-group">
+                            <label for="problem-number">Problem Number</label>
+                            <input type="number" id="problem-number" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="problem-title">Title</label>
+                            <input type="text" id="problem-title" required>
+                        </div>
+                    </div>
+                    
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
+                        <div class="form-group">
+                            <label for="problem-difficulty">Difficulty</label>
+                            <select id="problem-difficulty" required>
+                                <option value="">Select Difficulty</option>
+                                <option value="easy">Easy</option>
+                                <option value="medium">Medium</option>
+                                <option value="hard">Hard</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="publish-date">Publish Date</label>
+                            <input type="date" id="publish-date" required>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="problem-description">Short Description</label>
+                        <textarea id="problem-description" rows="2" placeholder="Brief description for problem cards"></textarea>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="youtube-url">YouTube Video URL</label>
+                        <input type="url" id="youtube-url" placeholder="https://youtube.com/watch?v=...">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="languages">Programming Languages (comma-separated)</label>
+                        <input type="text" id="languages" value="Python, Java, C++" placeholder="Python, Java, C++">
+                    </div>
+                </form>
+                
+                <h3>Content Builder</h3>
+                <p>Build your problem page content by adding different elements:</p>
+                
+                <div style="margin-bottom: 1rem;">
+                    <button class="btn btn-outline" onclick="addContentElement('text')">+ Add Text</button>
+                    <button class="btn btn-outline" onclick="addContentElement('code')">+ Add Code Block</button>
+                    <button class="btn btn-outline" onclick="addContentElement('image')">+ Add Image</button>
+                    <button class="btn btn-outline" onclick="addContentElement('ad')">+ Add Advertisement</button>
+                    <button class="btn btn-outline" onclick="addContentElement('complexity')">+ Add Complexity Analysis</button>
+                </div>
+                
+                <div id="content-elements" style="min-height: 200px; border: 2px dashed var(--border-color); padding: 1rem; border-radius: var(--border-radius);">
+                    <p style="text-align: center; color: var(--text-secondary); margin: 0;">
+                        Add content elements above to build your problem page
+                    </p>
+                </div>
+                
+                <div style="margin-top: 2rem; text-align: center;">
+                    <button class="btn btn-primary" onclick="saveProblem()">Save Problem</button>
+                    <button class="btn btn-secondary" onclick="previewProblem()">Preview</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Manage Problems Tab -->
+        <div id="manage-problems" class="admin-tab" style="display: none;">
+            <div class="content-builder">
+                <h2>Manage Existing Problems</h2>
+                <div id="problems-list" class="problems-list">
+                    <!-- Problems will be loaded here -->
+                </div>
+            </div>
+        </div>
+
+        <!-- Site Settings Tab -->
+        <div id="site-settings" class="admin-tab" style="display: none;">
+            <div class="content-builder">
+                <h2>Site Settings</h2>
+                
+                <div class="form-group">
+                    <label for="site-title">Site Title</label>
+                    <input type="text" id="site-title" value="LeetPrep | LeetCode Solutions & Tutorials">
+                </div>
+                
+                <div class="form-group">
+                    <label for="site-description">Site Description</label>
+                    <textarea id="site-description" rows="3">Welcome to LeetPrep – your go-to place for mastering LeetCode and cracking coding interviews the smart way.</textarea>
+                </div>
+                
+                <div class="form-group">
+                    <label for="youtube-channel">YouTube Channel URL</label>
+                    <input type="url" id="youtube-channel" value="https://www.youtube.com/@leet_prep">
+                </div>
+                
+                <div class="form-group">
+                    <label for="github-url">GitHub URL</label>
+                    <input type="url" id="github-url" value="https://github.com/LeetPrep">
+                </div>
+                
+                <h3>Advertisement Settings</h3>
+                <div class="form-group">
+                    <label for="adsense-client">AdSense Client ID</label>
+                    <input type="text" id="adsense-client" placeholder="ca-pub-XXXXXXXXXX">
+                </div>
+                
+                <div class="form-group">
+                    <label for="ad-frequency">Ad Frequency (elements between ads)</label>
+                    <input type="number" id="ad-frequency" value="3" min="1" max="10">
+                </div>
+                
+                <div style="margin-top: 2rem; text-align: center;">
+                    <button class="btn btn-primary" onclick="saveSettings()">Save Settings</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-brand">
+                    <img src="images/logo.png" alt="LeetPrep Logo" class="footer-logo">
+                    <h3>Leet<span class="accent">Prep</span></h3>
+                    <p>Mastering algorithms one problem at a time</p>
+                </div>
+                <div class="footer-links">
+                    <h4>Quick Links</h4>
+                    <a href="index.html">Home</a>
+                    <a href="#create-problem">Create Problem</a>
+                    <a href="#manage-problems">Manage Problems</a>
+                </div>
+                <div class="footer-social">
+                    <h4>Follow LeetPrep</h4>
+                    <a href="https://www.youtube.com/@leet_prep" class="social-link" target="_blank" rel="noopener">YouTube</a>
+                    <a href="https://github.com/LeetPrep" class="social-link" target="_blank" rel="noopener">GitHub</a>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 LeetPrep. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+    </div>
+
+    <script src="admin.js"></script>
+</body>
+</html>

@@ -1,0 +1,315 @@
+/* Problem Page Specific Styles */
+
+.problem-container {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 2rem 0;
+}
+
+.problem-header {
+    background: var(--bg-secondary);
+    border: 1px solid var(--border-color);
+    border-radius: var(--border-radius-lg);
+    padding: 2rem;
+    margin-bottom: 2rem;
+    text-align: center;
+}
+
+.problem-meta {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 1rem;
+}
+
+.problem-number {
+    background: var(--text-accent);
+    color: var(--bg-primary);
+    padding: 0.5rem 1rem;
+    border-radius: var(--border-radius);
+    font-weight: 600;
+    font-size: 1.1rem;
+}
+
+.problem-difficulty {
+    padding: 0.5rem 1rem;
+    border-radius: var(--border-radius);
+    font-weight: 600;
+    text-transform: uppercase;
+    font-size: 0.875rem;
+}
+
+.problem-difficulty.easy {
+    background: rgba(34, 197, 94, 0.1);
+    color: #22c55e;
+    border: 1px solid rgba(34, 197, 94, 0.3);
+}
+
+.problem-difficulty.medium {
+    background: rgba(251, 146, 60, 0.1);
+    color: #fb923c;
+    border: 1px solid rgba(251, 146, 60, 0.3);
+}
+
+.problem-difficulty.hard {
+    background: rgba(239, 68, 68, 0.1);
+    color: #ef4444;
+    border: 1px solid rgba(239, 68, 68, 0.3);
+}
+
+.problem-title {
+    font-size: 2.5rem;
+    margin: 1rem 0;
+    color: var(--text-primary);
+}
+
+.problem-links {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    margin-top: 1.5rem;
+}
+
+.problem-section {
+    background: var(--bg-secondary);
+    border: 1px solid var(--border-color);
+    border-radius: var(--border-radius-lg);
+    padding: 2rem;
+    margin-bottom: 2rem;
+}
+
+.problem-section h2 {
+    color: var(--text-accent);
+    margin-bottom: 1.5rem;
+    font-size: 1.5rem;
+    border-bottom: 2px solid var(--border-color);
+    padding-bottom: 0.5rem;
+}
+
+.problem-content {
+    color: var(--text-primary);
+    line-height: 1.6;
+}
+
+.problem-content code {
+    background: var(--bg-tertiary);
+    padding: 0.125rem 0.25rem;
+    border-radius: 3px;
+    font-family: var(--font-mono);
+    color: var(--text-accent);
+}
+
+.example-card {
+    background: var(--bg-tertiary);
+    border: 1px solid var(--border-color);
+    border-radius: var(--border-radius);
+    padding: 1.5rem;
+    margin-bottom: 1rem;
+}
+
+.example-card h4 {
+    color: var(--text-accent);
+    margin-bottom: 1rem;
+}
+
+.example-content > div {
+    margin-bottom: 0.5rem;
+    font-family: var(--font-mono);
+    font-size: 0.9rem;
+}
+
+.example-input {
+    color: var(--text-primary);
+}
+
+.example-output {
+    color: var(--text-primary);
+}
+
+.example-explanation {
+    color: var(--text-secondary);
+    font-family: var(--font-primary);
+    margin-top: 0.5rem;
+}
+
+.constraints-list {
+    list-style: none;
+    padding: 0;
+}
+
+.constraints-list li {
+    background: var(--bg-tertiary);
+    border: 1px solid var(--border-color);
+    border-radius: var(--border-radius);
+    padding: 0.75rem 1rem;
+    margin-bottom: 0.5rem;
+    font-family: var(--font-mono);
+    font-size: 0.9rem;
+}
+
+.approach-card {
+    background: var(--bg-tertiary);
+    border: 1px solid var(--border-color);
+    border-radius: var(--border-radius);
+    padding: 1.5rem;
+}
+
+.approach-card h3 {
+    color: var(--text-accent);
+    margin-bottom: 1rem;
+}
+
+.complexity-info {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+    margin-top: 1rem;
+    padding-top: 1rem;
+    border-top: 1px solid var(--border-color);
+}
+
+.complexity-item {
+    font-family: var(--font-mono);
+    font-size: 0.9rem;
+}
+
+.insights-list {
+    list-style: none;
+    padding: 0;
+}
+
+.insights-list li {
+    background: var(--bg-tertiary);
+    border: 1px solid var(--border-color);
+    border-radius: var(--border-radius);
+    padding: 1rem;
+    margin-bottom: 0.75rem;
+    border-left: 4px solid var(--text-accent);
+}
+
+.solution-tabs {
+    display: flex;
+    gap: 0.5rem;
+    margin-bottom: 1rem;
+}
+
+.tab-button {
+    background: var(--bg-tertiary);
+    border: 1px solid var(--border-color);
+    border-radius: var(--border-radius) var(--border-radius) 0 0;
+    padding: 0.75rem 1.5rem;
+    color: var(--text-secondary);
+    cursor: pointer;
+    transition: var(--transition);
+    font-weight: 500;
+}
+
+.tab-button:hover {
+    background: var(--bg-primary);
+    color: var(--text-primary);
+}
+
+.tab-button.active {
+    background: var(--text-accent);
+    color: var(--bg-primary);
+    border-color: var(--text-accent);
+}
+
+.solutions-container {
+    border: 1px solid var(--border-color);
+    border-radius: var(--border-radius);
+    overflow: hidden;
+}
+
+.solution-content {
+    background: var(--bg-tertiary);
+}
+
+.code-block {
+    position: relative;
+}
+
+.code-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: var(--bg-primary);
+    padding: 0.75rem 1rem;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.language-label {
+    font-weight: 600;
+    color: var(--text-accent);
+}
+
+.copy-button {
+    background: var(--text-accent);
+    color: var(--bg-primary);
+    border: none;
+    padding: 0.25rem 0.75rem;
+    border-radius: var(--border-radius-sm);
+    cursor: pointer;
+    font-size: 0.875rem;
+    transition: var(--transition);
+}
+
+.copy-button:hover {
+    opacity: 0.8;
+}
+
+.code-block pre {
+    margin: 0;
+    padding: 1.5rem;
+    overflow-x: auto;
+    background: var(--bg-primary);
+    font-family: var(--font-mono);
+    font-size: 0.9rem;
+    line-height: 1.5;
+}
+
+.code-block code {
+    background: none;
+    padding: 0;
+    color: var(--text-primary);
+}
+
+.solution-explanation {
+    padding: 1.5rem;
+    background: var(--bg-tertiary);
+}
+
+.solution-explanation h4 {
+    color: var(--text-accent);
+    margin-bottom: 1rem;
+}
+
+/* Mobile responsiveness */
+@media (max-width: 768px) {
+    .problem-container {
+        padding: 1rem;
+    }
+    
+    .problem-header,
+    .problem-section {
+        padding: 1.5rem;
+    }
+    
+    .problem-title {
+        font-size: 2rem;
+    }
+    
+    .problem-links {
+        flex-direction: column;
+        align-items: center;
+    }
+    
+    .complexity-info {
+        grid-template-columns: 1fr;
+    }
+    
+    .solution-tabs {
+        flex-wrap: wrap;
+    }
+}
