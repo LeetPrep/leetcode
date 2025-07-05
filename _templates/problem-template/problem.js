@@ -24,10 +24,25 @@ class ProblemPage {
     renderProblem() {
         if (!this.problemData) return;
 
+        // Update SEO meta data
+        const canonicalUrl = `https://leetprep.me/problems/${this.problemData.slug}/`;
+        const title = `${this.problemData.title} - LeetPrep | LeetCode Solutions`;
+        const description = `Detailed solution and explanation for ${this.problemData.title} with code in Python, Java, and C++. Difficulty: ${this.problemData.difficulty}. Tags: ${this.problemData.tags.join(', ')}.`;
+        
+        if (window.seoManager) {
+            window.seoManager.updatePageMeta(title, description, canonicalUrl);
+        }
+
+        // Add structured data for this problem
+        if (window.seoManager && window.seoManager.structuredData) {
+            window.seoManager.structuredData.injectSchema(
+                window.seoManager.structuredData.generateProblemSchema(this.problemData)
+            );
+        }
+
         // Update page title and meta
-        document.title = `${this.problemData.title} - LeetPrep | LeetCode Solutions`;
-        document.querySelector('meta[name="description"]').content = 
-            `Detailed solution and explanation for ${this.problemData.title} with code in Python, Java, and C++.`;
+        document.title = title;
+        document.querySelector('meta[name="description"]').content = description;
 
         // Update problem header
         document.querySelector('.problem-number').textContent = `#${this.problemData.id}`;

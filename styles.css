@@ -1147,7 +1147,49 @@ body.homepage {
     font-size: 0.875rem;
     text-transform: uppercase;
     letter-spacing: 0.5px;
-}    /* Responsive Design */
+}
+
+/* Breadcrumb Navigation */
+.breadcrumb {
+    margin-bottom: 1rem;
+}
+
+.breadcrumb ol {
+    display: flex;
+    align-items: center;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    font-size: 0.875rem;
+}
+
+.breadcrumb li {
+    display: flex;
+    align-items: center;
+}
+
+.breadcrumb li:not(:last-child)::after {
+    content: '›';
+    margin: 0 0.5rem;
+    color: var(--text-secondary);
+}
+
+.breadcrumb a {
+    color: var(--text-accent);
+    text-decoration: none;
+    transition: var(--transition);
+}
+
+.breadcrumb a:hover {
+    color: var(--text-primary);
+    text-decoration: underline;
+}
+
+.breadcrumb li[aria-current="page"] {
+    color: var(--text-secondary);
+}
+
+/* SEO and Performance Optimizations */    /* Responsive Design */
 @media (max-width: 768px) {
     .nav {
         display: none;

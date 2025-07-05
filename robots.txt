@@ -2,10 +2,22 @@ User-agent: *
 Allow: /
 
 # Allow all search engines to crawl the site
-Disallow: 
+Disallow: /_templates/
+Disallow: /admin/
+Disallow: *.json$
+
+# Special rules for search engines
+User-agent: Googlebot
+Allow: /
+
+User-agent: Bingbot
+Allow: /
 
 # Sitemap location
-Sitemap: https://leetprep.github.io/sitemap.xml
+Sitemap: https://leetprep.me/sitemap.xml
 
 # Crawl delay (optional - 1 second)
 Crawl-delay: 1
+
+# Host preference (optional)
+Host: https://leetprep.me

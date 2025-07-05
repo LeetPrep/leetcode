@@ -2,7 +2,7 @@
 
 A modern, LeetCode-themed static website for the **LeetPrep** YouTube channel, showcasing LeetCode problem solutions with detailed explanations in Python, Java, and C++. Perfect for coding interview preparation and algorithm learning.
 
-🔗 **Live Demo**: [https://leetprep.github.io](https://leetprep.github.io)  
+🔗 **Live Demo**: [https://leetprep.me](https://leetprep.me)  
 📺 **YouTube Channel**: [https://www.youtube.com/@leet_prep](https://www.youtube.com/@leet_prep)  
 💻 **GitHub**: [https://github.com/LeetPrep](https://github.com/LeetPrep)
 
@@ -30,13 +30,23 @@ A modern, LeetCode-themed static website for the **LeetPrep** YouTube channel, s
 ```
 Website/
 ├── index.html              # Main homepage
-├── problem-detail.html     # Sample problem detail page
+├── all-problems.html       # All problems listing page
 ├── styles.css             # All CSS styles
-├── script.js              # JavaScript functionality
+├── js/                    # JavaScript functionality
+│   ├── problems-manager.js # Problem data management
+│   ├── seo-manager.js     # SEO and structured data
+│   ├── home-page.js       # Homepage functionality
+│   ├── all-problems.js    # Problems page functionality
+│   └── search.js          # Search functionality
+├── _templates/            # Problem templates
+│   ├── problem-template/  # Template for new problems
+│   └── README.md          # Template usage guide
+├── problems/              # Individual problem folders
 ├── images/                # Logo and image assets
 │   └── README.md          # Image requirements guide
 ├── robots.txt             # SEO crawling instructions
-├── sitemap.xml            # SEO sitemap
+├── sitemap.xml            # SEO sitemap (dynamic generation available)
+├── .htaccess              # Server configuration (Apache)
 └── README.md              # This file
 ```
 
@@ -68,7 +78,7 @@ All links are already configured for:
 2. **Upload Files**: Upload all website files to the repository
 3. **Enable Pages**: Go to Settings → Pages → Source → Deploy from branch
 4. **Select Branch**: Choose `main` branch and root folder
-5. **Access Website**: Your site will be available at `https://leetprep.github.io`
+5. **Access Website**: Your site will be available at `https://leetprep.me`
 
 ## 📝 Adding New Problems
 
@@ -117,11 +127,23 @@ The website uses authentic LeetCode colors:
 
 ## 🔍 SEO Features
 
-- **Meta tags** optimized for LeetPrep brand
-- **Open Graph** tags for social media sharing
-- **Structured HTML** for search engines
-- **Sitemap.xml** included
-- **Robots.txt** configured
+- **Canonical URLs** for all pages to prevent duplicate content
+- **Dynamic sitemap generation** with JavaScript
+- **Structured data** (JSON-LD) for rich snippets
+- **Open Graph** and Twitter Card meta tags
+- **Breadcrumb navigation** for better user experience
+- **Optimized robots.txt** with proper directives
+- **Performance optimizations** (lazy loading, compression)
+- **Mobile-first responsive design**
+- **Semantic HTML** structure
+- **Fast loading** with optimized assets
+
+### SEO Manager Features:
+- **Automatic structured data** injection
+- **Dynamic meta tag** updates
+- **Sitemap generation** based on available problems
+- **Image optimization** with lazy loading
+- **Preload hints** for critical resources
 
 ## 📞 Support
 
